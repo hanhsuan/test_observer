@@ -43,6 +43,7 @@ from test_observer.data_access.models_enums import (
     DebStage,
     CharmStage,
     ImageStage,
+    OEMQAStage,
     TestExecutionStatus,
     TestResultStatus,
 )
@@ -114,6 +115,16 @@ class StartCharmTestExecutionRequest(_StartTestExecutionRequest):
 class StartImageTestExecutionRequest(_StartTestExecutionRequest):
     family: Literal[FamilyName.image] = FamilyName.image
     execution_stage: ImageStage
+    os: str
+    release: str
+    sha256: str
+    owner: str
+    image_url: HttpUrl
+
+
+class StartOEMQATestExecutionRequest(_StartTestExecutionRequest):
+    family: Literal[FamilyName.image] = FamilyName.oemqa
+    execution_stage: OEMQAStage
     os: str
     release: str
     sha256: str

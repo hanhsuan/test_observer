@@ -32,6 +32,7 @@ from test_observer.data_access.models_enums import (
     DebStage,
     CharmStage,
     ImageStage,
+    OEMQAStage,
 )
 from test_observer.data_access.repository import get_artefacts_by_family
 from test_observer.data_access.setup import get_db
@@ -147,6 +148,8 @@ def _validate_artefact_stage(artefact: Artefact, stage: StageName) -> None:
                 CharmStage(stage)
             case FamilyName.image:
                 ImageStage(stage)
+            case FamilyName.oemqa:
+                OEMQAStage(stage)
     except ValueError as e:
         raise HTTPException(
             status_code=400,

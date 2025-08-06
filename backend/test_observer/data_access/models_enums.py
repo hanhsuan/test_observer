@@ -76,6 +76,11 @@ class ImageStage(StrEnum):
     current = StageName.current
 
 
+class OEMQAStage(StrEnum):
+    dry = StageName.Dry
+    plan = StageName.Plan
+
+
 class TestExecutionStatus(StrEnum):
     __test__ = False
 

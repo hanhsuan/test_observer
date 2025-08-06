@@ -58,7 +58,8 @@
                     "snap": "#/components/schemas/StartSnapTestExecutionRequest",
                     "deb": "#/components/schemas/StartDebTestExecutionRequest",
                     "charm": "#/components/schemas/StartCharmTestExecutionRequest",
-                    "image": "#/components/schemas/StartImageTestExecutionRequest"
+                    "image": "#/components/schemas/StartImageTestExecutionRequest",
+                    "oemqa": "#/components/schemas/StartOEMQATestExecutionRequest"
                   }
                 }
               }
@@ -2797,6 +2798,14 @@
         ],
         "title": "ImageStage"
       },
+      "OEMQAStage": {
+        "type": "string",
+        "enum": [
+          "Dry",
+          "Plan"
+        ],
+        "title": "OEMQAStage"
+      },
       "IssueAttachmentRequest": {
         "properties": {
           "test_results": {
@@ -3336,6 +3345,109 @@
           "repo"
         ],
         "title": "StartDebTestExecutionRequest"
+      },
+      "StartOEMQATestExecutionRequest": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "version": {
+            "type": "string",
+            "title": "Version"
+          },
+          "arch": {
+            "type": "string",
+            "title": "Arch"
+          },
+          "environment": {
+            "type": "string",
+            "title": "Environment"
+          },
+          "ci_link": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 2083,
+                "minLength": 1,
+                "format": "uri"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Ci Link"
+          },
+          "test_plan": {
+            "type": "string",
+            "maxLength": 200,
+            "title": "Test Plan"
+          },
+          "initial_status": {
+            "$ref": "#/components/schemas/TestExecutionStatus",
+            "default": "IN_PROGRESS"
+          },
+          "relevant_links": {
+            "items": {
+              "$ref": "#/components/schemas/TestExecutionRelevantLinkCreate"
+            },
+            "type": "array",
+            "title": "Relevant Links"
+          },
+          "needs_assignment": {
+            "type": "boolean",
+            "title": "Needs Assignment",
+            "description": "Whether the artefact created from this test execution requires assignment of a reviewer",
+            "default": false
+          },
+          "family": {
+            "type": "string",
+            "const": "image",
+            "title": "Family",
+            "default": "image"
+          },
+          "execution_stage": {
+            "$ref": "#/components/schemas/OEMQAStage"
+          },
+          "os": {
+            "type": "string",
+            "title": "Os"
+          },
+          "release": {
+            "type": "string",
+            "title": "Release"
+          },
+          "sha256": {
+            "type": "string",
+            "title": "Sha256"
+          },
+          "owner": {
+            "type": "string",
+            "title": "Owner"
+          },
+          "image_url": {
+            "type": "string",
+            "maxLength": 2083,
+            "minLength": 1,
+            "format": "uri",
+            "title": "Image Url"
+          }
+        },
+        "type": "object",
+        "required": [
+          "name",
+          "version",
+          "arch",
+          "environment",
+          "test_plan",
+          "execution_stage",
+          "os",
+          "release",
+          "sha256",
+          "owner",
+          "image_url"
+        ],
+        "title": "StartImageTestExecutionRequest"
       },
       "StartImageTestExecutionRequest": {
         "properties": {
