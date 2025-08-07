@@ -257,6 +257,63 @@ const _imageColumnsMetadata = <ColumnMetadata>[
   ),
 ];
 
+const _oemqaColumnsMetadata = <ColumnMetadata>[
+  (
+    name: 'Name',
+    queryParam: ArtefactSortingQuery.name,
+    flex: 2,
+    cellBuilder: _buildNameCell,
+  ),
+  (
+    name: 'Version',
+    queryParam: ArtefactSortingQuery.version,
+    flex: 1,
+    cellBuilder: _buildVersionCell,
+  ),
+  (
+    name: 'OS',
+    queryParam: ArtefactSortingQuery.os,
+    flex: 1,
+    cellBuilder: _buildOSCell,
+  ),
+  (
+    name: 'Release',
+    queryParam: ArtefactSortingQuery.release,
+    flex: 1,
+    cellBuilder: _buildReleaseCell,
+  ),
+  (
+    name: 'Owner',
+    queryParam: ArtefactSortingQuery.owner,
+    flex: 1,
+    cellBuilder: _buildOwnerCell,
+  ),
+  (
+    name: 'Due date',
+    queryParam: ArtefactSortingQuery.dueDate,
+    flex: 1,
+    cellBuilder: _buildDueDateCell,
+  ),
+  (
+    name: 'Reviews remaining',
+    queryParam: ArtefactSortingQuery.reviewsRemaining,
+    flex: 1,
+    cellBuilder: _buildReviewsRemainingCell,
+  ),
+  (
+    name: 'Status',
+    queryParam: ArtefactSortingQuery.status,
+    flex: 1,
+    cellBuilder: _buildStatusCell,
+  ),
+  (
+    name: 'Assignee',
+    queryParam: ArtefactSortingQuery.assignee,
+    flex: 1,
+    cellBuilder: _buildAssigneeCell,
+  ),
+];
+
 Widget _buildNameCell(BuildContext context, Artefact artefact) =>
     Text(artefact.name);
 

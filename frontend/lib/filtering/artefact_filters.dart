@@ -47,6 +47,14 @@ List<Filter<Artefact>> getArtefactFiltersFor(FamilyName family) =>
           _artefactStatusFilter,
           _artefactDueDateFilter,
         ],
+      FamilyName.oemqa => [
+          _artefactOSFilter,
+          _artefactReleaseFilter,
+          _artefactOwnerFilter,
+          _artefactAssigneeFilter,
+          _artefactStatusFilter,
+          _artefactDueDateFilter,
+        ],
     };
 
 final _artefactAssigneeFilter = createFilterFromExtractor<Artefact>(

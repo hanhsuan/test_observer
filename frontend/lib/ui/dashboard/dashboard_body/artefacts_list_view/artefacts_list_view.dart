@@ -69,6 +69,14 @@ class ArtefactsListView extends ConsumerWidget {
     return _Row.image(key: PageStorageKey(artefact.id), artefact: artefact);
   }
 
+  const ArtefactsListView.oemqa({super.key})
+      : listHeader = const _Headers.oemqa(key: PageStorageKey('Header')),
+        listItemBuilder = _oemqaListItemBuilder;
+
+  static Widget _oemqaListItemBuilder(Artefact artefact) {
+    return _Row.oemqa(key: PageStorageKey(artefact.id), artefact: artefact);
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final pageUri = AppRoutes.uriFromContext(context);

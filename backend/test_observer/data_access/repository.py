@@ -80,6 +80,24 @@ def get_artefacts_by_family(
                 ),
             )
 
+        case FamilyName.oemqa:
+            subquery = (
+                base_query.add_columns(Artefact.os, Artefact.release)
+                .group_by(Artefact.os, Artefact.release)
+                .subquery()
+            )
+
+            query = session.query(Artefact).join(
+                subquery,
+                and_(
+                    Artefact.stage == subquery.c.stage,
+                    Artefact.name == subquery.c.name,
+                    Artefact.created_at == subquery.c.max_created,
+                    Artefact.os == subquery.c.os,
+                    Artefact.release == subquery.c.release,
+                ),
+            )
+
     if load_environment_reviews:
         query = query.options(
             joinedload(Artefact.builds).joinedload(ArtefactBuild.environment_reviews)

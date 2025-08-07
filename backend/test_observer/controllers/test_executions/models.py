@@ -123,7 +123,7 @@ class StartImageTestExecutionRequest(_StartTestExecutionRequest):
 
 
 class StartOEMQATestExecutionRequest(_StartTestExecutionRequest):
-    family: Literal[FamilyName.image] = FamilyName.oemqa
+    family: Literal[FamilyName.oemqa] = FamilyName.oemqa
     execution_stage: OEMQAStage
     os: str
     release: str

@@ -27,6 +27,8 @@ enum StageName {
   updates,
   pending,
   current,
+  Dry,
+  Plan,
   @JsonValue('')
   empty;
 
@@ -59,6 +61,11 @@ List<StageName> familyStages(FamilyName family) {
       return [
         StageName.pending,
         StageName.current,
+      ];
+    case FamilyName.oemqa:
+      return [
+        StageName.Dry,
+        StageName.Plan,
       ];
   }
 }

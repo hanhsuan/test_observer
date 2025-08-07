@@ -39,6 +39,7 @@ from test_observer.controllers.test_executions.models import (
     StartDebTestExecutionRequest,
     StartImageTestExecutionRequest,
     StartSnapTestExecutionRequest,
+    StartOEMQATestExecutionRequest,
 )
 from test_observer.controllers.issues.models import IssuePutRequest
 
@@ -359,7 +360,7 @@ START_TEST_EXECUTION_REQUESTS = [
         environment="rpi3",
     ),
     StartOEMQATestExecutionRequest(
-        name="noble-live-desktop-amd64",
+        name="oemqa",
         os="ubuntu",
         release="noble",
         arch="amd64",
@@ -369,7 +370,7 @@ START_TEST_EXECUTION_REQUESTS = [
         image_url=HttpUrl(
             "https://cdimage.ubuntu.com/noble/daily-live/20240827/noble-desktop-amd64.iso"
         ),
-        execution_stage=ImageStage.pending,
+        execution_stage=OEMQAStage.dry,
         test_plan="image test plan",
         environment="xps",
     ),

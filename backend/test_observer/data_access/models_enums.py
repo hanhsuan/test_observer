@@ -23,6 +23,7 @@ class FamilyName(StrEnum):
     deb = "deb"
     charm = "charm"
     image = "image"
+    oemqa = "oemqa"
 
 
 class StageName(StrEnum):
@@ -34,6 +35,8 @@ class StageName(StrEnum):
     stable = "stable"
     pending = "pending"
     current = "current"
+    Dry = "Dry"
+    Plan = "Plan"
 
     def _compare(self, other: str) -> int:
         stages = list(StageName.__members__.values())

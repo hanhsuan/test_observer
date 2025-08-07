@@ -37,6 +37,9 @@ class _Row extends StatelessWidget {
   const _Row.image({super.key, required this.artefact})
       : columnsMetaData = _imageColumnsMetadata;
 
+  const _Row.oemqa({super.key, required this.artefact})
+      : columnsMetaData = _oemqaColumnsMetadata;
+
   @override
   Widget build(BuildContext context) {
     return InkWell(

@@ -3385,7 +3385,7 @@
           },
           "initial_status": {
             "$ref": "#/components/schemas/TestExecutionStatus",
-            "default": "IN_PROGRESS"
+            "default": "Dry"
           },
           "relevant_links": {
             "items": {
@@ -3404,7 +3404,7 @@
             "type": "string",
             "const": "image",
             "title": "Family",
-            "default": "image"
+            "default": "oemqa"
           },
           "execution_stage": {
             "$ref": "#/components/schemas/OEMQAStage"
@@ -3447,7 +3447,7 @@
           "owner",
           "image_url"
         ],
-        "title": "StartImageTestExecutionRequest"
+        "title": "StartOEMQATestExecutionRequest"
       },
       "StartImageTestExecutionRequest": {
         "properties": {

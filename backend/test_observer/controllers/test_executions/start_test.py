@@ -37,6 +37,7 @@ from .models import (
     StartCharmTestExecutionRequest,
     StartDebTestExecutionRequest,
     StartImageTestExecutionRequest,
+    StartOEMQATestExecutionRequest,
     StartSnapTestExecutionRequest,
 )
 
@@ -51,6 +52,7 @@ class StartTestExecutionController:
             | StartDebTestExecutionRequest
             | StartCharmTestExecutionRequest
             | StartImageTestExecutionRequest
+            | StartOEMQATestExecutionRequest
         ) = Body(discriminator="family"),
         db: Session = Depends(get_db),
     ):
@@ -146,6 +148,12 @@ class StartTestExecutionController:
                 filter_kwargs["repo"] = self.request.repo
                 filter_kwargs["source"] = self.request.source
             case StartImageTestExecutionRequest():
+                filter_kwargs["os"] = self.request.os
+                filter_kwargs["release"] = self.request.release
+                filter_kwargs["sha256"] = self.request.sha256
+                filter_kwargs["owner"] = self.request.owner
+                filter_kwargs["image_url"] = str(self.request.image_url)
+            case StartOEMQATestExecutionRequest():
                 filter_kwargs["os"] = self.request.os
                 filter_kwargs["release"] = self.request.release
                 filter_kwargs["sha256"] = self.request.sha256

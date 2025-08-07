@@ -90,6 +90,20 @@ final appRouter = GoRouter(
             ),
           ),
         ),
+        GoRoute(
+          path: AppRoutes.oemqa,
+          pageBuilder: (_, __) => const NoTransitionPage(
+            child: Dashboard(),
+          ),
+        ),
+        GoRoute(
+          path: '${AppRoutes.oemqa}/:artefactId',
+          pageBuilder: (context, state) => NoTransitionPage(
+            child: ArtefactPage(
+              artefactId: int.parse(state.pathParameters['artefactId']!),
+            ),
+          ),
+        ),
       ],
     ),
   ],
@@ -111,6 +125,7 @@ class AppRoutes {
   static const debs = '/debs';
   static const charms = '/charms';
   static const images = '/images';
+  static const oemqa = '/oemqa';
 
   static Uri uriFromContext(BuildContext context) =>
       GoRouterState.of(context).uri;
@@ -122,6 +137,7 @@ class AppRoutes {
     if (path.startsWith(debs)) return FamilyName.deb;
     if (path.startsWith(charms)) return FamilyName.charm;
     if (path.startsWith(images)) return FamilyName.image;
+    if (path.startsWith(oemqa)) return FamilyName.oemqa;
 
     throw Exception('Unknown route: $path');
   }
@@ -133,12 +149,13 @@ class AppRoutes {
   }
 
   static bool isDashboardPage(Uri uri) =>
-      {snaps, debs, charms, images}.contains(uri.path);
+      {snaps, debs, charms, images, oemqa}.contains(uri.path);
 
   static bool isArtefactPage(Uri uri) =>
       (uri.path.contains(AppRoutes.snaps) ||
           uri.path.contains(AppRoutes.debs) ||
           uri.path.contains(AppRoutes.charms) ||
+          uri.path.contains(AppRoutes.oemqa) ||
           uri.path.contains(AppRoutes.images)) &&
       uri.pathSegments.length == 2;
 }
@@ -160,6 +177,9 @@ void navigateToArtefactPage(BuildContext context, int artefactId) {
       break;
     case FamilyName.image:
       path = AppRoutes.images + path;
+      break;
+    case FamilyName.oemqa:
+      path = AppRoutes.oemqa + path;
       break;
   }
 
